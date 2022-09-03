@@ -1,7 +1,7 @@
 {
-  "name": "js-logger",
+  "name": "js-ts-logger",
   "version": "1.0.0",
-  "description": "JS logger library",
+  "description": "JS TS logger library",
   "main": "index.js",
   "scripts": {
     "test": "jest --config jestconfig.json",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ketavchotaliya/js-logger.git"
+    "url": "git+https://github.com/ketavchotaliya/js-ts-logger.git"
   },
   "author": "Ketav Chotaliya",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ketavchotaliya/js-logger/issues"
+    "url": "https://github.com/ketavchotaliya/js-ts-logger/issues"
   },
-  "homepage": "https://github.com/ketavchotaliya/js-logger#readme",
+  "homepage": "https://github.com/ketavchotaliya/js-ts-logger#readme",
   "keywords": [
     "logger",
     "js-logger",
