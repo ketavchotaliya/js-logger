@@ -1,0 +1,43 @@
+{
+  "name": "js-logger",
+  "version": "1.0.0",
+  "description": "JS logger library",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --config jestconfig.json",
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ketavchotaliya/js-logger.git"
+  },
+  "author": "Ketav Chotaliya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ketavchotaliya/js-logger/issues"
+  },
+  "homepage": "https://github.com/ketavchotaliya/js-logger#readme",
+  "keywords": [
+    "logger",
+    "js-logger",
+    "ts-logger",
+    "node-logger",
+    "winston-logger-package",
+    "customized-logger"
+  ],
+  "dependencies": {
+    "moment": "^2.29.4",
+    "ts-node": "^10.9.1",
+    "winston": "^3.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.14",
+    "prettier": "^2.7.1",
+    "tslint": "^6.1.3",
+    "typescript": "^4.8.2"
+  },
+  "files": [
+    "build/**/*"
+  ]
+}
