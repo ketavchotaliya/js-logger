@@ -1,7 +1,7 @@
 import { Logger, transports } from "winston";
 import { existsSync, mkdirSync } from "fs";
 import * as moment from "moment";
-class JsLogger {
+class JsTsLogger {
   private logger: any;
   // define the logs level
   private logLevel: string =
@@ -147,4 +147,5 @@ class JsLogger {
   }
 }
 
-export default new JsLogger();
+const logger = new JsTsLogger();
+export default { logger };
