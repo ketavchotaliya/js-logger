@@ -1,6 +1,6 @@
 {
   "name": "js-ts-logger",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "JS TS logger library",
   "main": "index.js",
   "scripts": {
