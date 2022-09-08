@@ -1,11 +1,10 @@
-import { Logger, transports } from "winston";
-import { existsSync, mkdirSync } from "fs";
-import * as moment from "moment";
+import { Logger, transports } from 'winston';
+import { existsSync, mkdirSync } from 'fs';
+import * as moment from 'moment';
 class JsTsLogger {
   private logger: any;
   // define the logs level
-  private logLevel: string =
-    process.env.ENV === "production" ? "error" : "silly";
+  private logLevel: string = process.env.ENV === 'production' ? 'error' : 'silly';
   constructor() {
     this.logger = new Logger({
       transports: this.transportList(),
@@ -15,10 +14,7 @@ class JsTsLogger {
 
   // create transport array
   private transportList = () => {
-    return [
-      new transports.Console(this.consoleOptions()),
-      new transports.File(this.fileOptions()),
-    ];
+    return [new transports.Console(this.consoleOptions()), new transports.File(this.fileOptions())];
   };
 
   private consoleOptions() {
@@ -44,97 +40,61 @@ class JsTsLogger {
       label: null, // Display file name
       json: false, // write error in json object or plain text
       timestamp: true,
-      depth: "",
+      depth: '',
       colorize: false,
       // silent: true    // Uncomment to turn off logging
     };
   }
 
   private filePath() {
-    const dir = __dirname + "../logs";
+    const dir = __dirname + '../logs';
     if (!existsSync(dir)) {
       mkdirSync(dir);
     }
-    return dir + `/logs_${moment.utc().format("YYYY-MM-DD")}_.log`;
+    return dir + `/logs_${moment.utc().format('YYYY-MM-DD')}_.log`;
   }
   // return the file name from absolute path for label in logs
   private getLabel = (fileName: string) => {
-    const parts = fileName.split("/");
-    return parts[parts.length - 2] + "/" + parts.pop();
+    const parts = fileName.split('/');
+    return parts[parts.length - 2] + '/' + parts.pop();
   };
 
   // public methods for external use
   public setLabel(fileName: string, method: any = null) {
     let label = this.getLabel(fileName);
-    label += method ? " ~ " + method : "";
+    label += method ? ' ~ ' + method : '';
     this.logger.transports.console.label = label;
     this.logger.transports.file.label = label;
   }
 
-  public error(
-    fileName: string,
-    method: string,
-    uuid: string,
-    msg: string,
-    data?: any
-  ) {
+  public error(fileName: string, method: string, uuid: string, msg: string, data?: any) {
     this.setLabel(fileName, method);
-    this.logger.error(uuid + " - " + msg, data ? data : "", "");
+    this.logger.error(uuid + ' - ' + msg, data ? data : '', '');
   }
 
-  public warn(
-    fileName: string,
-    method: string,
-    uuid: string,
-    msg: string,
-    data?: any
-  ) {
+  public warn(fileName: string, method: string, uuid: string, msg: string, data?: any) {
     this.setLabel(fileName, method);
-    this.logger.warn(uuid + " - " + msg, data ? data : "", "");
+    this.logger.warn(uuid + ' - ' + msg, data ? data : '', '');
   }
 
-  public info(
-    fileName: string,
-    method: string,
-    uuid: string,
-    msg: string,
-    data?: any
-  ) {
+  public info(fileName: string, method: string, uuid: string, msg: string, data?: any) {
     this.setLabel(fileName, method);
-    this.logger.info(uuid + " - " + msg, data ? data : "", "");
+    this.logger.info(uuid + ' - ' + msg, data ? data : '', '');
   }
 
-  public verbose(
-    fileName: string,
-    method: string,
-    uuid: string,
-    msg: string,
-    data?: any
-  ) {
+  public verbose(fileName: string, method: string, uuid: string, msg: string, data?: any) {
     this.setLabel(fileName, method);
-    this.logger.verbose(uuid + " - " + msg, data ? data : "", "");
+    this.logger.verbose(uuid + ' - ' + msg, data ? data : '', '');
   }
 
-  public debug(
-    fileName: string,
-    method: string,
-    uuid: string,
-    msg: string,
-    data?: any
-  ) {
+  public debug(fileName: string, method: string, uuid: string, msg: string, data?: any) {
     this.setLabel(fileName, method);
-    this.logger.debug(uuid + " - " + msg, data ? data : "", "");
+    this.logger.debug(uuid + ' - ' + msg, data ? data : '', '');
   }
 
-  public silly(
-    fileName: string,
-    method: string,
-    uuid: string,
-    msg: string,
-    data?: any
-  ) {
+  public silly(fileName: string, method: string, uuid: string, msg: string, data?: any) {
     this.setLabel(fileName, method);
-    this.logger.silly(uuid + " - " + msg, data ? data : "", "");
+    this.logger.silly(uuid + ' - ' + msg, data ? data : '', '');
   }
 
   public setFileLevel(level: string) {
