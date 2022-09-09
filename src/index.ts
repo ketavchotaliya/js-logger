@@ -1,14 +1,14 @@
-import { Logger, transports } from 'winston';
 import { existsSync, mkdirSync } from 'fs';
 import * as moment from 'moment';
+import { createLogger, format, transports } from 'winston';
 class JsTsLogger {
   private logger: any;
   // define the logs level
   private logLevel: string = process.env.ENV === 'production' ? 'error' : 'silly';
   constructor() {
-    this.logger = new Logger({
+    this.logger = createLogger({
       transports: this.transportList(),
-      exceptionHandlers: this.transportList(),
+      level: this.logLevel,
     });
   }
 
@@ -63,6 +63,13 @@ class JsTsLogger {
   public setLabel(fileName: string, method: any = null) {
     let label = this.getLabel(fileName);
     label += method ? ' ~ ' + method : '';
+
+    this.logger.format = format.combine(
+      format.label({ label: label, message: true }),
+      format.timestamp(),
+      format.simple(),
+    );
+
     this.logger.transports.console.label = label;
     this.logger.transports.file.label = label;
   }
