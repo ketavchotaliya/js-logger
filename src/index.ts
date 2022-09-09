@@ -65,7 +65,7 @@ class JsTsLogger {
     label += method ? ' ~ ' + method : '';
 
     this.logger.format = format.combine(
-      format.label({ label: label, message: true }),
+      format.label({ label, message: true }),
       format.timestamp(),
       format.simple(),
     );
